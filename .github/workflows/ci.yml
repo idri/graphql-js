@@ -176,7 +176,7 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       github.event_name == 'push' &&
-      github.repository == 'graphql/graphql-js' &&
+      github.repository == 'idri/graphql-js' &&
       github.ref == 'refs/heads/master'
     needs: [test, fuzz, lint]
     steps:
@@ -212,7 +212,7 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       github.event_name == 'push' &&
-      github.repository == 'graphql/graphql-js' &&
+      github.repository == 'idri/graphql-js' &&
       github.ref == 'refs/heads/master'
     needs: [test, fuzz, lint]
     steps:

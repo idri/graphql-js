@@ -3,7 +3,7 @@
 #  This script maintains a git branch which mirrors master but in a form that
 #  what will eventually be deployed to npm, allowing npm dependencies to use:
 #
-#      "graphql": "git://github.com/graphql/graphql-js.git#npm"
+#      "graphql": "git://github.com/idri/graphql-js.git#npm"
 #
 #  Additionaly it use use to push Deno build to `deno` branch.
 
@@ -35,7 +35,7 @@ fi;
 
 # Create empty directory
 rm -rf $BRANCH
-git clone -b $BRANCH -- "https://${GH_TOKEN}@github.com/graphql/graphql-js.git" $BRANCH
+git clone -b $BRANCH -- "https://${GH_TOKEN}@github.com/idri/graphql-js.git" $BRANCH
 
 # Remove existing files first
 rm -rf $BRANCH/**/*

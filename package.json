@@ -8,13 +8,13 @@
   "module": "index.mjs",
   "types": "index.d.ts",
   "sideEffects": false,
-  "homepage": "https://github.com/graphql/graphql-js",
+  "homepage": "https://github.com/idri/graphql-js",
   "bugs": {
-    "url": "https://github.com/graphql/graphql-js/issues"
+    "url": "https://github.com/idri/graphql-js/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/graphql/graphql-js.git"
+    "url": "https://github.com/idri/graphql-js.git"
   },
   "keywords": [
     "graphql",
