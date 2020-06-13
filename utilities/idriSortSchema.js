@@ -189,19 +189,17 @@ function sortByName(array) {
   });
 }
 
-function sortByNameAndType(array) {
+function groupByTypeAndSortByName(array) {
+  console.log("groupByTypeAndSortByName(array = ".concat(array, ")"));
   return sortBy(array, function (obj) {
     return obj.name;
   });
 }
 
 function sortBy(array, mapToKey) {
-  console.log('sortBy<T>(aray, mapToKey): ');
   return array.slice().sort(function (obj1, obj2) {
     var key1 = mapToKey(obj1);
     var key2 = mapToKey(obj2);
-    console.log("key1 = ".concat(key1));
-    console.log("key2 = ".concat(key2));
     return key1.localeCompare(key2);
   });
 }
