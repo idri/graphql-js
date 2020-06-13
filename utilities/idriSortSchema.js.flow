@@ -37,7 +37,7 @@ import {
 export function idriSortSchema(schema: GraphQLSchema): GraphQLSchema {
   const schemaConfig = schema.toConfig();
   const typeMap = keyValMap(
-    sortByName(schemaConfig.types),
+    groupByTypeAndSortByName(schemaConfig.types),
     (type) => type.name,
     sortNamedType,
   );

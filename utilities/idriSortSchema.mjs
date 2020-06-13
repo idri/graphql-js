@@ -20,7 +20,7 @@ import { GraphQLObjectType, GraphQLInterfaceType, GraphQLUnionType, GraphQLEnumT
 
 export function idriSortSchema(schema) {
   var schemaConfig = schema.toConfig();
-  var typeMap = keyValMap(sortByName(schemaConfig.types), function (type) {
+  var typeMap = keyValMap(groupByTypeAndSortByName(schemaConfig.types), function (type) {
     return type.name;
   }, sortNamedType);
   return new GraphQLSchema(_objectSpread(_objectSpread({}, schemaConfig), {}, {

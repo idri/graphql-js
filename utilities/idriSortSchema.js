@@ -36,7 +36,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  */
 function idriSortSchema(schema) {
   var schemaConfig = schema.toConfig();
-  var typeMap = (0, _keyValMap.default)(sortByName(schemaConfig.types), function (type) {
+  var typeMap = (0, _keyValMap.default)(groupByTypeAndSortByName(schemaConfig.types), function (type) {
     return type.name;
   }, sortNamedType);
   return new _schema.GraphQLSchema(_objectSpread(_objectSpread({}, schemaConfig), {}, {
