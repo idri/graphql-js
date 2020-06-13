@@ -1029,6 +1029,12 @@ Object.defineProperty(exports, "lexicographicSortSchema", {
     return _index7.lexicographicSortSchema;
   }
 });
+Object.defineProperty(exports, "idriSortSchema", {
+  enumerable: true,
+  get: function get() {
+    return _index7.idriSortSchema;
+  }
+});
 Object.defineProperty(exports, "printSchema", {
   enumerable: true,
   get: function get() {

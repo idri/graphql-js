@@ -16,7 +16,9 @@ export { extendSchema // @deprecated: Get the description from a schema AST node
 // syntax for specifying descriptions - will be removed in v16.
 , getDescription } from "./extendSchema.mjs"; // Sort a GraphQLSchema.
 
-export { lexicographicSortSchema } from "./lexicographicSortSchema.mjs"; // Print a GraphQLSchema to GraphQL Schema language.
+export { lexicographicSortSchema } from "./lexicographicSortSchema.mjs"; // Sort a GraphQLSchema.
+
+export { idriSortSchema } from "./idriSortSchema.mjs"; // Print a GraphQLSchema to GraphQL Schema language.
 
 export { printSchema, printType, printIntrospectionSchema } from "./printSchema.mjs"; // Create a GraphQLType from a GraphQL language AST.
 

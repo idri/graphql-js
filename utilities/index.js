@@ -63,6 +63,12 @@ Object.defineProperty(exports, "lexicographicSortSchema", {
     return _lexicographicSortSchema.lexicographicSortSchema;
   }
 });
+Object.defineProperty(exports, "idriSortSchema", {
+  enumerable: true,
+  get: function get() {
+    return _idriSortSchema.idriSortSchema;
+  }
+});
 Object.defineProperty(exports, "printSchema", {
   enumerable: true,
   get: function get() {
@@ -217,6 +223,8 @@ var _buildASTSchema = require("./buildASTSchema");
 var _extendSchema = require("./extendSchema");
 
 var _lexicographicSortSchema = require("./lexicographicSortSchema");
+
+var _idriSortSchema = require("./idriSortSchema");
 
 var _printSchema = require("./printSchema");
 

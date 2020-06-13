@@ -70,7 +70,8 @@ getIntrospectionQuery // Gets the target Operation from a Document.
 , getDescription // Extends an existing GraphQLSchema from a parsed GraphQL Schema
 // language AST.
 , extendSchema // Sort a GraphQLSchema.
-, lexicographicSortSchema // Print a GraphQLSchema to GraphQL Schema language.
+, lexicographicSortSchema // Sort a GraphQLSchema.
+, idriSortSchema // Print a GraphQLSchema to GraphQL Schema language.
 , printSchema // Print a GraphQLType to GraphQL Schema language.
 , printType // Prints the built-in introspection schema in the Schema Language
 // format.

@@ -373,6 +373,8 @@ export {
   extendSchema,
   // Sort a GraphQLSchema.
   lexicographicSortSchema,
+  // Sort a GraphQLSchema.
+  idriSortSchema,
   // Print a GraphQLSchema to GraphQL Schema language.
   printSchema,
   // Print a GraphQLType to GraphQL Schema language.
