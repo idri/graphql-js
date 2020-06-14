@@ -183,7 +183,7 @@ function groupByTypeAndSortByName(array) {
   var arrayInput = new Array();
   array.forEach(function (item) {
     if (isScalarType(item)) {
-      arrrayScalar.push(item);
+      arrayScalar.push(item);
     } else if (isIntrospectionType(item)) {
       arrayIntrospection.push(item);
     } else if (isObjectType(item)) {

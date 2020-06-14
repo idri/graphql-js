@@ -170,16 +170,16 @@ function sortByName<T: { +name: string, ... }>(
 function groupByTypeAndSortByName<T: { +name: string, ... }>(
   array: $ReadOnlyArray<T>,
 ): Array<T> {
-  var arrayScalar = new Array();
-  var arrayIntrospection = new Array();
-  var arrayObject = new Array();
-  var arrayInterface = new Array();
-  var arrayUnion = new Array();
-  var arrayEnum = new Array();
-  var arrayInput = new Array();
+  let arrayScalar = new Array();
+  let arrayIntrospection = new Array();
+  let arrayObject = new Array();
+  let arrayInterface = new Array();
+  let arrayUnion = new Array();
+  let arrayEnum = new Array();
+  let arrayInput = new Array();
   array.forEach( (item) => {
     if (isScalarType(item)) {
-      arrrayScalar.push(item);
+      arrayScalar.push(item);
     }
     else if (isIntrospectionType(item)) {
       arrayIntrospection.push(item);

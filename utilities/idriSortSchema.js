@@ -199,7 +199,7 @@ function groupByTypeAndSortByName(array) {
   var arrayInput = new Array();
   array.forEach(function (item) {
     if ((0, _definition.isScalarType)(item)) {
-      arrrayScalar.push(item);
+      arrayScalar.push(item);
     } else if ((0, _introspection.isIntrospectionType)(item)) {
       arrayIntrospection.push(item);
     } else if ((0, _definition.isObjectType)(item)) {
