@@ -56,6 +56,9 @@ export {
 // Sort a GraphQLSchema.
 export { lexicographicSortSchema } from './lexicographicSortSchema';
 
+// Sort a GraphQLSchema.
+export { idriSortSchema } from './idriSortSchema';
+
 // Print a GraphQLSchema to GraphQL Schema language.
 export {
   printSchema,
