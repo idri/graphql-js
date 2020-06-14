@@ -190,7 +190,15 @@ function sortByName(array) {
 }
 
 function groupByTypeAndSortByName(array) {
-  console.log("groupByTypeAndSortByName(array = ".concat(array, ")"));
+  array.forEach(function (item) {
+    if ((0, _definition.isObjectType)(item)) {
+      console.log("item is Object = ".concat(item));
+    }
+
+    if ((0, _definition.isEnumType)(item)) {
+      console.log("item is Enum = ".concat(item));
+    }
+  });
   return sortBy(array, function (obj) {
     return obj.name;
   });
