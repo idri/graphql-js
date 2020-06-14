@@ -153,7 +153,7 @@ export function idriSortSchema(schema: GraphQLSchema): GraphQLSchema {
 
 function sortObjMap<T, R>(map: ObjMap<T>, sortValueFn?: (T) => R): ObjMap<R> {
   const sortedMap = Object.create(null);
-  const sortedKeys = sortBy(Object.keys(map), (x) => x);
+  const sortedKeys = sortCamelCaseBy(Object.keys(map), (x) => x);
   for (const key of sortedKeys) {
     const value = map[key];
     sortedMap[key] = sortValueFn ? sortValueFn(value) : value;
@@ -201,19 +201,12 @@ function groupByTypeAndSortByName<T: { +name: string, ... }>(
     }
   });
   const arrayScalarSorted = sortBy(arrayScalar, (obj) => obj.name);
-  console.log(`array Scalar Sorted = ${arrayScalarSorted}`);
   const arrayIntrospectionSorted = sortBy(arrayIntrospection, (obj) => obj.name);
-  console.log(`array Introspection Sorted = ${arrayIntrospectionSorted}`);
   const arrayObjectSorted = sortBy(arrayObject, (obj) => obj.name);
-  console.log(`array Object Sorted = ${arrayObjectSorted}`);
   const arrayInterfaceSorted = sortBy(arrayInterface, (obj) => obj.name);
-  console.log(`array Interface Sorted = ${arrayInterfaceSorted}`);
   const arrayUnionSorted = sortBy(arrayUnion, (obj) => obj.name);
-  console.log(`array UnionS Sorted = ${arrayUnionSorted}`);
   const arrayEnumSorted = sortBy(arrayEnum, (obj) => obj.name);
-  console.log(`array Enum Sorted = ${arrayEnumSorted}`);
   const arrayInputSorted = sortBy(arrayInput, (obj) => obj.name);
-  console.log(`array Input Sorted = ${arrayInputSorted}`);
   return arrayIntrospectionSorted.concat(arrayInterfaceSorted).concat(arrayUnionSorted).concat(arrayObjectSorted).concat(arrayEnumSorted).concat(arrayInputSorted).concat(arrayScalarSorted);
 }
 
@@ -225,5 +218,44 @@ function sortBy<T>(
     const key1 = mapToKey(obj1);
     const key2 = mapToKey(obj2);
     return key1.localeCompare(key2);
+  });
+}
+
+function sortCamelCaseBy<T>(
+  array: $ReadOnlyArray<T>,
+  mapToKey: (T) => string,
+): Array<T> {
+  return array.slice().sort((obj1, obj2) => {
+    const key1 = mapToKey(obj1);
+    const key2 = mapToKey(obj2);
+    console.log(`The keys to compare are: key1=${key1} and key2=${key2}`);
+
+    const arrKey1 = key1.replace(/([a-z])([A-Z])/g, '$1 $2').split(' ');
+    const arrKey2 = key2.replace(/([a-z])([A-Z])/g, '$1 $2').split(' ');
+      
+    let i;  
+    let res = 0;
+    if (arrKey1.length <= arrKey2.length) {
+      for (i = 0; i < arrKey1.length; i++) {
+        res = arrKey1[i].localeCompare(arrKey2[i]);
+        if (res !== 0) {
+          console.log('res = ' + res);
+          break;
+        }	
+      }    
+    } else {    
+      for (i = 0; i < arrKey2.length; i++) {
+        console.log(`Compare arrKey1[${i}]=${arrKey1[i]} with arrKey2[${i}]=${arrKey2[i]}`);
+        res = arrKey1[i].localeCompare(arrKey2[i]);
+        if (res !== 0) {
+          console.log('res = ' + res);
+          break;
+        }
+      }    
+    }    
+    if (res == 0){
+      res = key1.localeCompare(key2);
+    }    
+    return res;
   });
 }

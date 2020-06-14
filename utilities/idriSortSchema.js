@@ -170,7 +170,7 @@ function idriSortSchema(schema) {
 
 function sortObjMap(map, sortValueFn) {
   var sortedMap = Object.create(null);
-  var sortedKeys = sortBy(Object.keys(map), function (x) {
+  var sortedKeys = sortCamelCaseBy(Object.keys(map), function (x) {
     return x;
   });
 
@@ -217,31 +217,24 @@ function groupByTypeAndSortByName(array) {
   var arrayScalarSorted = sortBy(arrayScalar, function (obj) {
     return obj.name;
   });
-  console.log("array Scalar Sorted = ".concat(arrayScalarSorted));
   var arrayIntrospectionSorted = sortBy(arrayIntrospection, function (obj) {
     return obj.name;
   });
-  console.log("array Introspection Sorted = ".concat(arrayIntrospectionSorted));
   var arrayObjectSorted = sortBy(arrayObject, function (obj) {
     return obj.name;
   });
-  console.log("array Object Sorted = ".concat(arrayObjectSorted));
   var arrayInterfaceSorted = sortBy(arrayInterface, function (obj) {
     return obj.name;
   });
-  console.log("array Interface Sorted = ".concat(arrayInterfaceSorted));
   var arrayUnionSorted = sortBy(arrayUnion, function (obj) {
     return obj.name;
   });
-  console.log("array UnionS Sorted = ".concat(arrayUnionSorted));
   var arrayEnumSorted = sortBy(arrayEnum, function (obj) {
     return obj.name;
   });
-  console.log("array Enum Sorted = ".concat(arrayEnumSorted));
   var arrayInputSorted = sortBy(arrayInput, function (obj) {
     return obj.name;
   });
-  console.log("array Input Sorted = ".concat(arrayInputSorted));
   return arrayIntrospectionSorted.concat(arrayInterfaceSorted).concat(arrayUnionSorted).concat(arrayObjectSorted).concat(arrayEnumSorted).concat(arrayInputSorted).concat(arrayScalarSorted);
 }
 
@@ -250,5 +243,44 @@ function sortBy(array, mapToKey) {
     var key1 = mapToKey(obj1);
     var key2 = mapToKey(obj2);
     return key1.localeCompare(key2);
+  });
+}
+
+function sortCamelCaseBy(array, mapToKey) {
+  return array.slice().sort(function (obj1, obj2) {
+    var key1 = mapToKey(obj1);
+    var key2 = mapToKey(obj2);
+    console.log("The keys to compare are: key1=".concat(key1, " and key2=").concat(key2));
+    var arrKey1 = key1.replace(/([a-z])([A-Z])/g, '$1 $2').split(' ');
+    var arrKey2 = key2.replace(/([a-z])([A-Z])/g, '$1 $2').split(' ');
+    var i;
+    var res = 0;
+
+    if (arrKey1.length <= arrKey2.length) {
+      for (i = 0; i < arrKey1.length; i++) {
+        res = arrKey1[i].localeCompare(arrKey2[i]);
+
+        if (res !== 0) {
+          console.log('res = ' + res);
+          break;
+        }
+      }
+    } else {
+      for (i = 0; i < arrKey2.length; i++) {
+        console.log("Compare arrKey1[".concat(i, "]=").concat(arrKey1[i], " with arrKey2[").concat(i, "]=").concat(arrKey2[i]));
+        res = arrKey1[i].localeCompare(arrKey2[i]);
+
+        if (res !== 0) {
+          console.log('res = ' + res);
+          break;
+        }
+      }
+    }
+
+    if (res == 0) {
+      res = key1.localeCompare(key2);
+    }
+
+    return res;
   });
 }
