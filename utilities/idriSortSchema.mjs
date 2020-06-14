@@ -174,13 +174,13 @@ function sortByName(array) {
 }
 
 function groupByTypeAndSortByName(array) {
-  var arrayScalar = new Arrray();
-  var arrayIntrospection = new Arrray();
-  var arrayObject = new Arrray();
-  var arrayInterface = new Arrray();
-  var arrayUnion = new Arrray();
-  var arrayEnum = new Arrray();
-  var arrayInput = new Arrray();
+  var arrayScalar = new Array();
+  var arrayIntrospection = new Array();
+  var arrayObject = new Array();
+  var arrayInterface = new Array();
+  var arrayUnion = new Array();
+  var arrayEnum = new Array();
+  var arrayInput = new Array();
   array.forEach(function (item) {
     if (isScalarType(item)) {
       arrrayScalar.push(item);
