@@ -200,13 +200,13 @@ function groupByTypeAndSortByName<T: { +name: string, ... }>(
       arrayInput.push(item);
     }
   });
-  const arrayScalarSorted = sortBy(arrayScalar, (obj) => obj.name);
-  const arrayIntrospectionSorted = sortBy(arrayIntrospection, (obj) => obj.name);
-  const arrayObjectSorted = sortBy(arrayObject, (obj) => obj.name);
-  const arrayInterfaceSorted = sortBy(arrayInterface, (obj) => obj.name);
-  const arrayUnionSorted = sortBy(arrayUnion, (obj) => obj.name);
-  const arrayEnumSorted = sortBy(arrayEnum, (obj) => obj.name);
-  const arrayInputSorted = sortBy(arrayInput, (obj) => obj.name);
+  const arrayScalarSorted = sortCamelCaseBy(arrayScalar, (obj) => obj.name);
+  const arrayIntrospectionSorted = sortCamelCaseBy(arrayIntrospection, (obj) => obj.name);
+  const arrayObjectSorted = sortCamelCaseBy(arrayObject, (obj) => obj.name);
+  const arrayInterfaceSorted = sortCamelCaseBy(arrayInterface, (obj) => obj.name);
+  const arrayUnionSorted = sortCamelCaseBy(arrayUnion, (obj) => obj.name);
+  const arrayEnumSorted = sortCamelCaseBy(arrayEnum, (obj) => obj.name);
+  const arrayInputSorted = sortCamelCaseBy(arrayInput, (obj) => obj.name);
   return arrayIntrospectionSorted.concat(arrayInterfaceSorted).concat(arrayUnionSorted).concat(arrayObjectSorted).concat(arrayEnumSorted).concat(arrayInputSorted).concat(arrayScalarSorted);
 }
 
@@ -228,8 +228,7 @@ function sortCamelCaseBy<T>(
   return array.slice().sort((obj1, obj2) => {
     const key1 = mapToKey(obj1);
     const key2 = mapToKey(obj2);
-    console.log(`The keys to compare are: key1=${key1} and key2=${key2}`);
-
+    
     const arrKey1 = key1.replace(/([a-z])([A-Z])/g, '$1 $2').split(' ');
     const arrKey2 = key2.replace(/([a-z])([A-Z])/g, '$1 $2').split(' ');
       
@@ -239,21 +238,18 @@ function sortCamelCaseBy<T>(
       for (i = 0; i < arrKey1.length; i++) {
         res = arrKey1[i].localeCompare(arrKey2[i]);
         if (res !== 0) {
-          console.log('res = ' + res);
           break;
-        }	
+        }
       }    
     } else {    
       for (i = 0; i < arrKey2.length; i++) {
-        console.log(`Compare arrKey1[${i}]=${arrKey1[i]} with arrKey2[${i}]=${arrKey2[i]}`);
         res = arrKey1[i].localeCompare(arrKey2[i]);
         if (res !== 0) {
-          console.log('res = ' + res);
           break;
         }
       }    
     }    
-    if (res == 0){
+    if (res === 0){
       res = key1.localeCompare(key2);
     }    
     return res;
