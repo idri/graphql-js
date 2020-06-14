@@ -174,18 +174,59 @@ function sortByName(array) {
 }
 
 function groupByTypeAndSortByName(array) {
+  var arrayScalar = new Arrray();
+  var arrayIntrospection = new Arrray();
+  var arrayObject = new Arrray();
+  var arrayInterface = new Arrray();
+  var arrayUnion = new Arrray();
+  var arrayEnum = new Arrray();
+  var arrayInput = new Arrray();
   array.forEach(function (item) {
-    if (isObjectType(item)) {
-      console.log("item is Object = ".concat(item));
-    }
-
-    if (isEnumType(item)) {
-      console.log("item is Enum = ".concat(item));
+    if (isScalarType(item)) {
+      arrrayScalar.push(item);
+    } else if (isIntrospectionType(item)) {
+      arrayIntrospection.push(item);
+    } else if (isObjectType(item)) {
+      arrayObject.push(item);
+    } else if (isInterfaceType(item)) {
+      arrayInterface.push(item);
+    } else if (isUnionType(item)) {
+      arrayUnion.push(item);
+    } else if (isEnumType(item)) {
+      arrayEnum.push(item);
+    } else if (isInputObjectType(item)) {
+      arrayInput.push(item);
     }
   });
-  return sortBy(array, function (obj) {
+  var arrayScalarSorted = sortBy(arrayScalar, function (obj) {
     return obj.name;
   });
+  console.log("array Scalar Sorted = ".concat(arrayScalarSorted));
+  var arrayIntrospectionSorted = sortBy(arrayIntrospection, function (obj) {
+    return obj.name;
+  });
+  console.log("array Introspection Sorted = ".concat(arrayIntrospectionSorted));
+  var arrayObjectSorted = sortBy(arrayObject, function (obj) {
+    return obj.name;
+  });
+  console.log("array Object Sorted = ".concat(arrayObjectSorted));
+  var arrayInterfaceSorted = sortBy(arrayInterface, function (obj) {
+    return obj.name;
+  });
+  console.log("array Interface Sorted = ".concat(arrayInterfaceSorted));
+  var arrayUnionSorted = sortBy(arrayUnion, function (obj) {
+    return obj.name;
+  });
+  console.log("array UnionS Sorted = ".concat(arrayUnionSorted));
+  var arrayEnumSorted = sortBy(arrayEnum, function (obj) {
+    return obj.name;
+  });
+  console.log("array Enum Sorted = ".concat(arrayEnumSorted));
+  var arrayInputSorted = sortBy(arrayInput, function (obj) {
+    return obj.name;
+  });
+  console.log("array Input Sorted = ".concat(arrayInputSorted));
+  return arrayIntrospectionSorted.concat(arrayInterfaceSorted).concat(arrayUnionSorted).concat(arrayObjectSorted).concat(arrayEnumSorted).concat(arrayInputSorted).concat(arrayScalarSorted);
 }
 
 function sortBy(array, mapToKey) {
